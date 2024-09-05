@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .user-details {
+            margin-top: 20px;
+        }
+        .user-details p {
+            margin: 5px 0;
+            color: #555;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Home Page</h1>
+    </header>
+    
+    <div class="container">
+        <h1>Hello, {{ request.session.samlNameId }}</h1>
+        <div class="user-details">
+            <h2>Your SAML Attributes:</h2>
+            <ul>
+                {% for attribute, values in request.session.samlUserdata.items %}
+                    <li><strong>{{ attribute }}:</strong> {{ values|join:", " }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+   
+</body>
+</html>
